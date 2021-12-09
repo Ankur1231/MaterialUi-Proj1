@@ -1,26 +1,28 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { Button } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./components/ui/Theme";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//components
+import Header from "./components/ui/Header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button variant="contained">Click</Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<div>Home</div>} />
+          <Route path="/services" element={<div>srevices</div>} />
+          <Route path="/customsoftware" element={<div>customsoftware</div>} />
+          <Route path="/mobileapps" element={<div>mobileapps</div>} />
+          <Route path="/websites" element={<div>websites</div>} />
+          <Route path="/revolution" element={<div>revolution</div>} />
+          <Route path="/about" element={<div>about</div>} />
+          <Route path="/contact" element={<div>contact</div>} />
+          <Route path="/estimate" element={<div>estimate</div>} />
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
