@@ -1,9 +1,24 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  logo: {
+    height: "8em",
+    [theme.breakpoints.down("md")]: {
+      height: "7em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "5.5em",
+    },
+  },
+}));
 
 const Logo = () => {
+  const classes = useStyles();
+
   return (
     <svg
-      style={{ height: "8em" }}
+      className={classes.logo}
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 480 139"
