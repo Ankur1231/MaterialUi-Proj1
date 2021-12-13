@@ -118,6 +118,9 @@ const useStyles = makeStyles((theme) => ({
   drawerItemEstimate: {
     backgroundColor: theme.palette.common.orange,
   },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
+  },
 }));
 
 const Header = () => {
@@ -131,6 +134,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  console.log(value);
 
   useEffect(() => {
     if (
@@ -170,13 +175,7 @@ const Header = () => {
         className={classes.tabsContainer}
         TabIndicatorProps={{ style: { backgroundColor: "#FFFFFF" } }}
       >
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to={"/"}
-          label="Home"
-          value="/"
-        />
+        <Tab className={classes.tab} component={Link} to={"/"} label="Home" value="/" />
         <Tab
           aria-owns={anchorEl ? "simple-menu" : undefined}
           aria-haspopup={anchorEl ? "true" : undefined}
@@ -220,6 +219,8 @@ const Header = () => {
         MenuListProps={{ onMouseLeave: handelClose }}
         classes={{ paper: classes.menu }}
         elevation={0}
+        keepMounted
+        style={{ zIndex: 1302 }}
       >
         {menuOptions.map((option, index) => (
           <MenuItem
@@ -255,6 +256,7 @@ const Header = () => {
         }}
         classes={{ paper: classes.drawer }}
       >
+        <div className={classes.themeMargin} />
         <List disablePadding>
           <ListItem
             divider
@@ -282,12 +284,7 @@ const Header = () => {
             }}
             selected={value === "/services"}
           >
-            <ListItemText
-              className={classes.drawerItem}
-              divider
-              button
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} divider button disableTypography>
               Services
             </ListItemText>
           </ListItem>
@@ -368,7 +365,7 @@ const Header = () => {
   return (
     <>
       <ElevationScroll>
-        <AppBar color="primary" position="fixed">
+        <AppBar color="primary" position="fixed" className={classes.appbar}>
           <Toolbar disableGutters>
             <Button
               component={Link}
